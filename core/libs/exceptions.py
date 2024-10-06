@@ -1,10 +1,9 @@
 class FyleError(Exception):
-    status_code = 400
 
-    def __init__(self, status_code, message):
-        Exception.__init__(self)
+    def __init__(self, message, status_code=400):
         self.message = message
         self.status_code = status_code
+        super().__init__(self.message)
 
     def to_dict(self):
         res = dict()

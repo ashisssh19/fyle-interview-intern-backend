@@ -1,7 +1,10 @@
-from flask import Response, jsonify, make_response
+from flask import jsonify
 
+class APIResponse:
+    @staticmethod
+    def respond(data=None, status=200, headers=None):
+        return jsonify({"data": data}), status, headers
 
-class APIResponse(Response):
-    @classmethod
-    def respond(cls, data):
-        return make_response(jsonify(data=data))
+    @staticmethod
+    def error(message, status=400, error='BadRequest'):
+        return jsonify({"message": message, "error": error}), status
